@@ -1,7 +1,7 @@
 const Availability = require("../models/availability.model");
 const Slot = require("../models/slot.model");
 const mongoose = require("mongoose");
-const { getTimeSlots } = require("./../helper/slot.helper");
+const { getTimeSlots } = require("../helper/slot.helper");
 exports.getSlots = async (req, res) => {
   const { date } = req.query;
   const availabilities = await Availability.find({
@@ -10,6 +10,7 @@ exports.getSlots = async (req, res) => {
   let slots = [];
 
   for (const avail of availabilities) {
+    // get time slots for the user
     let userSlots = getTimeSlots(avail.startTime, avail.endTime);
 
     userSlots = userSlots.filter((slot) => {
