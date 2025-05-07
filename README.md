@@ -3,7 +3,8 @@
 
 This Project implements Role based Slot booking system with two Roles: **Admin** and **User**
 
-In that Admin can view users' available slots date-wise and User can add their availability, including date, start time, and end time.
+In that Admin can view users' available slots date-wise and Also can book any available slot for a user based on date and start time,
+User can add their availability, including date, start time, and end time.
 
 
 
