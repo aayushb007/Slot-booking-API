@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "1ca22691-e467-429b-8ec0-d77310f19c26",
+		"name": "Slot Booking API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44740892",
+		"_collection_link": "https://aayush-3110793.postman.co/workspace/Aayush's-Workspace~6f97fd7e-65c3-4df2-8e0f-f06bef9fb6df/collection/44740892-1ca22691-e467-429b-8ec0-d77310f19c26?action=share&source=collection_link&creator=44740892"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\n//   \"username\": \"admin\",\n//   \"password\": \"admin123\"\n// }\n\n{\n  \"username\": \"user1\",\n  \"password\": \"user1123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Availability (User)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWFmYjZmNDExNGY0ZmFjZjk1NDI5ZCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ2NjA1MTg2LCJleHAiOjE3NDY2OTE1ODZ9.bxFYfwLyidqRnyCdjtG2_M4ZCMx_Wc9F9CZOmc_WsUA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"date\": \"2025-05-09\",\n  \"startTime\": \"09:45\",\n  \"endTime\": \"19:15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/availability",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"availability"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Slots (Admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWFmYjZmNDExNGY0ZmFjZjk1NDI5YiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NjYwMzIyMywiZXhwIjoxNzQ2Njg5NjIzfQ.lMAXbkQUMtmx2oFt62r-OfFLChVpPT2TMZfy074y_Sk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin_token}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/slots?date=2025-05-09",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"slots"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2025-05-09"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book Slot (Admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MWFmYjZmNDExNGY0ZmFjZjk1NDI5YiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0NjYwMzIyMywiZXhwIjoxNzQ2Njg5NjIzfQ.lMAXbkQUMtmx2oFt62r-OfFLChVpPT2TMZfy074y_Sk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"681afb6f4114f4facf95429d\",\n  \"date\": \"2025-05-09\",\n  \"startTime\": \"09:45\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/slots/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"slots",
+						"book"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
