@@ -1,9 +1,6 @@
-const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
-
-const mongoose = require("mongoose");
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
+const {connectDB} = require("../config/db.config");
 
 /*
   This script seeds the database with initial data. It creates an admin user and three regular users.
@@ -11,7 +8,8 @@ const bcrypt = require("bcryptjs");
 */
 
 async function seed() {
-  await mongoose.connect(process.env.MONGO_URI);
+  // await mongoose.connect(process.env.MONGO_URI);
+  connectDB();
 
   await User.deleteMany({});
   const admin = new User({

@@ -5,18 +5,13 @@ const mongoose = require("mongoose");
 const authRoutes = require("./app/routes/auth.routes");
 const availabilityRoutes = require("./app/routes/availability.routes");
 const slotRoutes = require("./app/routes/slot.routes");
+const { connectDB } = require("./app/config/db.config");
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-(async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB connected");
-  } catch (error) {
-    console.error("MongoDB connection error:", error);
-  }
-})();
+connectDB()
 
 app.use("/api/auth", authRoutes);
 app.use("/api/availability", availabilityRoutes);
